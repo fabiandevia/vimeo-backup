@@ -38,10 +38,10 @@ while next_videos_page_url:
         video_name = video_name.replace("/", "-")
 
         if os.path.isfile(video_name):
-            print video_name, "already downloaded, skipping..."
+            print(video_name, "already downloaded, skipping...")
             continue
 
-        print "Attempting to download", video_name
+        print("Attempting to download", video_name)
         download_link = None
         if 'download' in video:
             available_downloads = {d['quality']: d for d in video['download']}
@@ -51,12 +51,13 @@ while next_videos_page_url:
                     break
 
         if not download_link:
-            print "Download link unavailable, skipping..."
+            print("Download link unavailable, skipping...")
             continue
 
-        print "Found", quality, "quality at", download_link
+        print("Found", quality, "quality at", download_link)
         subprocess.call(["wget", "-O", video_name, download_link])
-            
-        print "="*80
+
+        print("="*80)
 
     next_videos_page_url = videos['paging']['next']
+    
